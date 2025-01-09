@@ -1,0 +1,36 @@
+#frontend-backend-policy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-backend-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      role: backend  # Applies to backend pods
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              role: frontend  # Allow traffic from frontend
+      ports:
+        - protocol: TCP
+          port: 80
+  egress:
+    - to:  # Allow DNS resolution
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+    - to:  # Allow responses back to frontend
+        - podSelector:
+            matchLabels:
+              role: frontend
+      ports:
+        - protocol: TCP
+          port: 80

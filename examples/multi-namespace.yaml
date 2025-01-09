@@ -1,0 +1,62 @@
+# Create namespaces
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web
+  labels:
+    environment: production
+    type: frontend
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: backend
+  labels:
+    environment: production
+    type: backend
+---
+# Network policies
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: multi-namespace-policy
+  namespace: web
+spec:
+  podSelector:
+    matchLabels:
+      app: api
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              environment: production
+          podSelector:
+            matchLabels:
+              role: frontend
+---
+# Sample pods
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-pod
+  namespace: web
+  labels:
+    app: api
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-api
+  namespace: backend
+  labels:
+    app: backend-api
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest

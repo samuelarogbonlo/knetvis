@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "knetvis"
+version = "0.1.0"
+dependencies = [
+    "kubernetes",
+    "networkx",
+    "matplotlib",
+    "click",
+    "rich",
+    "pyyaml"
+]
+
+[tool.pytest]
+pythonpath = ["."]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
