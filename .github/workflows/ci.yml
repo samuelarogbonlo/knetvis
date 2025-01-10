@@ -1,4 +1,3 @@
-# .github/workflows/ci.yml
 name: CI
 
 on:
@@ -67,4 +66,3 @@ jobs:
       with:
         name: dist
         path: dist/
-

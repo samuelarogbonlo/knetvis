@@ -6,13 +6,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="knetvis",
     version="0.1.0",
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Samuel Arogbonlo",
+    author_email="sbayo971@gmail.com",
     description="Kubernetes Network Policy Visualization Tool",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/yourusername/knetvis",
-    packages=find_packages(),
+    package_dir={"": "src"},  # Add this line - tells setuptools packages are in src directory
+    packages=find_packages(where="src"),  # Update this line - look for packages in src directory
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
@@ -35,7 +36,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "knetvis=src.main:cli",
+            "knetvis=knetvis.cli:cli",  
         ],
     },
 )

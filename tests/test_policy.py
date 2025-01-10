@@ -1,6 +1,7 @@
-import pytest
 from unittest.mock import Mock, patch
-from src.policy import PolicyParser
+
+from src.knetvis.policy import PolicyParser
+
 
 def test_load_policy_file(tmp_path):
     # Create a test policy file
@@ -26,23 +27,28 @@ spec:
     policy_file.write_text(policy_content)
 
     parser = PolicyParser()
-    policy = parser.load_policy_file(str(policy_file))
+    policies = parser.load_policy_file(str(policy_file))
 
-    assert policy['metadata']['name'] == 'test-policy'
-    assert policy['spec']['podSelector']['matchLabels']['app'] == 'web'
+    # Get the first policy since we only have one
+    policy = policies[0]
+    assert policy["metadata"]["name"] == "test-policy"
+    assert policy["spec"]["podSelector"]["matchLabels"]["app"] == "web"
 
-@patch('kubernetes.client.NetworkingV1Api')
+
+@patch("kubernetes.client.NetworkingV1Api")
 def test_get_namespace_policies(mock_api):
     # Mock the kubernetes API response
     mock_policy = Mock()
     mock_policy.to_dict.return_value = {
-        'metadata': {'name': 'test-policy'},
-        'spec': {'podSelector': {}}
+        "metadata": {"name": "test-policy"},
+        "spec": {"podSelector": {}},
     }
-    mock_api.return_value.list_namespaced_network_policy.return_value.items = [mock_policy]
+    mock_api.return_value.list_namespaced_network_policy.return_value.items = [
+        mock_policy
+    ]
 
     parser = PolicyParser()
-    policies = parser.get_namespace_policies('default')
+    policies = parser.get_namespace_policies("default")
 
     assert len(policies) == 1
-    assert policies[0]['metadata']['name'] == 'test-policy'
+    assert policies[0]["metadata"]["name"] == "test-policy"

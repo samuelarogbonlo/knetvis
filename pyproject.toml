@@ -1,16 +1,16 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "knetvis"
 version = "0.1.0"
-description = "A CLI tool for network visualization"
-readme = "README.md"
-requires-python = ">=3.7"
 authors = [
     { name = "Samuel Arogbonlo", email = "sbayo971@gmail.com" },
 ]
+description = "A CLI tool for Kubernetes Network Policy visualization"
+readme = "README.md"
+requires-python = ">=3.8"
 dependencies = [
     "kubernetes>=28.1.0",
     "networkx>=3.1",
@@ -21,19 +21,7 @@ dependencies = [
 ]
 
 [project.scripts]
-knetvis = "knetvis.cli:main"
+knetvis = "knetvis.cli:cli"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src"]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.3.1",
-    "pytest-cov>=4.1.0",
-    "black>=22.3.0",
-    "isort>=5.10.1",
-    "flake8>=4.0.1",
-    "pre-commit>=2.20.0",
-    "tox>=3.24.0",
-    "mypy>=0.982",
-]
+[tool.setuptools.packages.find]
+where = ["src"]

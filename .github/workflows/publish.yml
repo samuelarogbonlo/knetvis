@@ -1,4 +1,3 @@
-# .github/workflows/publish.yml
 name: Publish to PyPI
 
 on:
