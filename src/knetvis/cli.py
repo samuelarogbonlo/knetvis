@@ -1,7 +1,10 @@
 import os
+from typing import Any, Dict, List
 
 import click
 from rich.console import Console
+
+from knetvis.visualizer import NetworkVisualizer
 
 from .models import Target
 from .policy import PolicyParser
@@ -14,6 +17,32 @@ console = Console()
 def cli() -> None:
     """knetvis - Kubernetes Network Policy Visualization Tool"""
     pass
+
+
+@cli.command()
+@click.argument("namespace")
+def visualize(namespace: str) -> None:
+    """Visualize network policies in a namespace."""
+    try:
+        parser = PolicyParser()
+        policies: List[Dict[str, Any]] = parser.get_namespace_policies(namespace)
+
+        visualizer = NetworkVisualizer()
+        # Passing required namespace and policies arguments
+        visualizer.create_graph(namespace=namespace, policies=policies)
+
+        # Create output directory if it doesn't exist
+        os.makedirs("output", exist_ok=True)
+
+        # Save graph with output filename
+        output_file = os.path.join("output", f"{namespace}-network-policies.png")
+        visualizer.save_graph(output_file=output_file)
+
+        console.print(
+            f"[green]✓ Visualization created for namespace '{namespace}'[/green]"
+        )
+    except Exception as e:
+        console.print(f"[red]Error: {str(e)}[/red]")
 
 
 @cli.command()

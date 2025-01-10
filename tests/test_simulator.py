@@ -1,6 +1,8 @@
 from unittest.mock import Mock, patch
 
-from src.knetvis.policy import PolicyParser
+from knetvis.models import Target
+from knetvis.policy import PolicyParser
+from knetvis.simulator import TrafficSimulator
 
 
 def test_load_policy_file(tmp_path):
@@ -52,3 +54,12 @@ def test_get_namespace_policies(mock_api):
 
     assert len(policies) == 1
     assert policies[0]["metadata"]["name"] == "test-policy"
+
+
+@patch("kubernetes.client.CoreV1Api")
+def test_check_resource_exists(mock_core_api):
+    simulator = TrafficSimulator(PolicyParser())
+    mock_core_api.return_value.read_namespaced_pod.return_value = True
+
+    target = Target(namespace="default", kind="pod", name="test-pod")
+    assert simulator.check_resource_exists(target) is True

@@ -7,7 +7,8 @@
 
 A powerful CLI tool for visualizing and testing Kubernetes Network Policies.
 
-![Demo](docs/images/demo.png)
+Demo
+[![asciicast](https://asciinema.org/a/fpdGBsqPChhydw8FFGAFugCuy.svg)](https://asciinema.org/a/fpdGBsqPChhydw8FFGAFugCuy)
 
 ## Features
 
@@ -31,20 +32,6 @@ knetvis test pod/frontend pod/backend
 # Validate a policy file
 knetvis validate policy.yaml
 ```
-
-## Screenshots
-
-### Policy Visualization
-![Policy Visualization](docs/images/policy-viz.png)
-*Network policy visualization showing pod connections*
-
-### Connectivity Testing
-![Connectivity Test](docs/images/connectivity.png)
-*Testing connectivity between pods across namespaces*
-
-### Policy Validation
-![Policy Validation](docs/images/validation.png)
-*Validating network policy configuration*
 
 ## Installation
 
