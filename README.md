@@ -8,7 +8,7 @@
 A powerful CLI tool for visualizing and testing Kubernetes Network Policies.
 
 ## Demo
-[![Knetvis Operation](https://asciinema.org/a/fpdGBsqPChhydw8FFGAFugCuy.svg)](https://asciinema.org/a/fpdGBsqPChhydw8FFGAFugCuy)
+![Knetvis Operation](images/demo.gif)
 
 ## Features
 
