@@ -7,15 +7,15 @@
 
 A powerful CLI tool for visualizing and testing Kubernetes Network Policies.
 
-## Demo
-![Knetvis Operation](images/demo.gif)
-
 ## Features
 
 - 🎯 **Visual Network Policy Analysis**: Generate clear visualizations of your network policies
 - 🔍 **Policy Testing**: Test connectivity between pods and services
 - ✅ **Policy Validation**: Validate network policies before applying them
 - 🌐 **Cross-Namespace Support**: Analyze policies across multiple namespaces
+
+## Demo
+![Knetvis Operation](images/Real-demo.gif)
 
 ## Quick Start
 
