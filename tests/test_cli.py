@@ -1,4 +1,5 @@
 import os
+import pytest
 from unittest.mock import Mock, patch
 
 from click.testing import CliRunner
@@ -6,6 +7,7 @@ from click.testing import CliRunner
 from knetvis.cli import cli
 
 
+@pytest.mark.usefixtures("mock_kube_config")
 @patch("knetvis.cli.NetworkVisualizer")
 @patch("knetvis.cli.PolicyParser")
 def test_visualize_command(mock_policy_parser, mock_visualizer):
@@ -37,6 +39,7 @@ def test_visualize_command(mock_policy_parser, mock_visualizer):
     mock_visualizer_instance.save_graph.assert_called_once()
 
 
+@pytest.mark.usefixtures("mock_kube_config")
 @patch("knetvis.cli.TrafficSimulator")
 def test_test_command(mock_simulator):
     # Setup mock
@@ -44,6 +47,9 @@ def test_test_command(mock_simulator):
     mock_simulator.return_value = mock_simulator_instance
     mock_simulator_instance.check_resource_exists.return_value = True
     mock_simulator_instance.test_connectivity.return_value = True
+
+    # Add success message mock
+    mock_simulator_instance.test_connectivity.return_value = "Traffic is allowed"
 
     runner = CliRunner()
     result = runner.invoke(cli, ["test", "default/pod/frontend", "default/pod/backend"])
@@ -55,6 +61,7 @@ def test_test_command(mock_simulator):
     mock_simulator_instance.test_connectivity.assert_called_once()
 
 
+@pytest.mark.usefixtures("mock_kube_config")
 @patch("knetvis.cli.PolicyParser")
 def test_validate_command(mock_policy_parser):
     # Setup mock

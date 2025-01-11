@@ -1,8 +1,10 @@
+import pytest
 from unittest.mock import Mock, patch
 
 from src.knetvis.visualizer import NetworkVisualizer
 
 
+@pytest.mark.usefixtures("mock_kube_config")
 @patch("kubernetes.client.CoreV1Api")
 def test_create_graph(mock_core_api):
     # Mock pod list response
@@ -32,6 +34,7 @@ def test_create_graph(mock_core_api):
     assert visualizer.graph.number_of_nodes() > 0
 
 
+@pytest.mark.usefixtures("mock_kube_config")
 def test_save_graph(tmp_path):
     visualizer = NetworkVisualizer()
 

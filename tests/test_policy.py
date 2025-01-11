@@ -1,8 +1,10 @@
+import pytest
 from unittest.mock import Mock, patch
 
 from src.knetvis.policy import PolicyParser
 
 
+@pytest.mark.usefixtures("mock_kube_config")
 def test_load_policy_file(tmp_path):
     # Create a test policy file
     policy_content = """
@@ -35,6 +37,7 @@ spec:
     assert policy["spec"]["podSelector"]["matchLabels"]["app"] == "web"
 
 
+@pytest.mark.usefixtures("mock_kube_config")
 @patch("kubernetes.client.NetworkingV1Api")
 def test_get_namespace_policies(mock_api):
     # Mock the kubernetes API response
