@@ -18,7 +18,7 @@ knetvis visualize NAMESPACE [OPTIONS]
 
 ### `test`
 
-Tests connectivity between Kubernetes resources.
+For testing connectivity between Kubernetes resources.
 
 **Usage:**
 ```bash
