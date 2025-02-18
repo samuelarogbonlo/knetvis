@@ -32,9 +32,8 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be repor
 Our community has a **Code of Conduct Committee** in place to ensure a welcoming and safe environment for all contributors.
 
 ### Committee Members:
-- **Alice Example** (Project Maintainer)
-- **Bob Example** (Senior Developer)
-- **Charlie Example** (Community Manager)
+- **Tola Ore-Aruwaji** (Project Maintainer)
+- **Isaac Arogbonlo** (Community Manager)
 
 ### Contact Information:
 For any concerns related to the Code of Conduct, please reach out to the committee via email: [conduct@knetvis.org](mailto:sbayo971@gmail.com).
