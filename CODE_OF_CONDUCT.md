@@ -25,7 +25,24 @@ Community leaders are responsible for clarifying the standards of acceptable beh
 This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community.
 
 ## Enforcement
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [Your Contact Email]. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [sbayo971@gmail.com]. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality concerning the reporter of an incident.
+
+# Code of Conduct Committee
+
+Our community has a **Code of Conduct Committee** in place to ensure a welcoming and safe environment for all contributors.
+
+### Committee Members:
+- **Alice Example** (Project Maintainer)
+- **Bob Example** (Senior Developer)
+- **Charlie Example** (Community Manager)
+
+### Contact Information:
+For any concerns related to the Code of Conduct, please reach out to the committee via email: [conduct@knetvis.org](mailto:sbayo971@gmail.com).
+
+### Responsibilities:
+- Reviewing any reports of Code of Conduct violations.
+- Making decisions on actions to take based on the severity of the violation.
+- Promoting a positive and inclusive culture within the community.
 
 ## Attribution
 This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/), version 1.4.
